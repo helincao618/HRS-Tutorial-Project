@@ -1,0 +1,6 @@
+<launch>
+	<node name="nao3" pkg="nao_control_tutorial_3" type="nao_3" output="screen" />
+	<include file="$(find nao_apps)/launch/tactile.launch" />
+	<include file="$(find nao_apps)/launch/leds.launch" />
+	<include file="$(find nao_apps)/launch/speech.launch" />
+</launch>

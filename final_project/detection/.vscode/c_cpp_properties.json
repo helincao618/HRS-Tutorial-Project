@@ -1,0 +1,24 @@
+{
+    "configurations": [
+        {
+            "browse": {
+                "databaseFilename": "",
+                "limitSymbolsToIncludedHeaders": true
+            },
+            "includePath": [
+                "/home/hrs/group_A/devel/include/**",
+                "/opt/ros/kinetic/include/**",
+                "/home/hrs/group_A/src/darknet_ros/darknet_ros/include/**",
+                "/home/hrs/group_A/src/detection/include/**",
+                "/home/hrs/group_A/src/speech/include/**",
+                "/usr/include/**"
+            ],
+            "name": "ROS",
+            "intelliSenseMode": "gcc-x64",
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "c++17"
+        }
+    ],
+    "version": 4
+}

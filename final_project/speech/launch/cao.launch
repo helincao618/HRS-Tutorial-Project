@@ -1,0 +1,6 @@
+<launch>
+  <node pkg="speech" type="marker_dect" name="marker_dect" output="screen"/> 
+  <node pkg="speech" type="localization.py" name="localization"  output="screen"/>
+  <node pkg="speech" type="mapping.py" name="mapping" output="screen"/>
+  <node pkg="speech" type="naoposition.py" name="naoposition" output="screen"/>
+</launch>

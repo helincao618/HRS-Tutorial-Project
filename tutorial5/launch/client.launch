@@ -1,0 +1,5 @@
+<launch>
+
+  <node pkg="nao_control_tutorial_1" type="nao_2" name="nao_tutorial_control_1" output="screen" />
+
+</launch>

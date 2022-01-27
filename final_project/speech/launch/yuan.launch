@@ -1,0 +1,10 @@
+<launch>
+  <env name="PYTHONPATH" value="$(env PYTHONPATH)" />
+  <arg name="nao_ip" default="$(optenv NAO_IP 127.0.0.1)" />
+  <arg name="nao_port" default="$(optenv NAO_PORT 9559)" />
+
+  <node pkg="speech" type="poseinit.py" name="poseinit" required="true" args="$(arg nao_ip) $(arg nao_port)" output="screen"/> 
+  <node pkg="speech" type="face_recog.py" name="face_recog" required="true" args="$(arg nao_ip) $(arg nao_port)" output="screen"/>
+  <node pkg="speech" type="hand_operation.py" name="hand_operation" required="true" args="$(arg nao_ip) $(arg nao_port)" output="screen"/>
+  <node pkg="speech" type="preSpeechServer.py" name="prespeech" required="true" args="$(arg nao_ip) $(arg nao_port)" output="screen"/>
+</launch>

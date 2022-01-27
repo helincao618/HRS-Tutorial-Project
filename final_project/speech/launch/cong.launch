@@ -1,0 +1,10 @@
+<launch>
+
+
+  <node pkg="speech" type="congwalk.py" name="walk_server" output="screen"/> 
+  <node pkg="speech" type="risehead.py" name="risehead"  output="screen"/>
+  <node pkg="speech" type="downhead.py" name="down_head_server" output="screen"/>
+  <node pkg="speech" type="pre_grasp.py" name="move_joints_server" output="screen"/>
+  <node pkg="speech" type="walk_general.py" name="walk_polar" output="screen"/>
+
+</launch>

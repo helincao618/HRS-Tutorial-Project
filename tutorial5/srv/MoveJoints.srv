@@ -1,0 +1,10 @@
+#CREATE request parameters
+int8 id
+string[] names 
+float64[] angles 
+float64 fractionMaxSpeed
+float64[] time_second
+
+----
+#CREATE response parameters
+bool reply

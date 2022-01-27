@@ -1,0 +1,56 @@
+********************************************************Cong Wang*******************************************************************
+ * This package fulfills the following functions of our project:
+ * 1. Getting the position of the object (cup) in the world-frame according to the base-footprint of NAO.
+ * 2. Approaching the object until NAO reaches the pre-grasp position
+ * 3. Grasping the object, after that, standing up
+ ************************************************************************************************************************************
+ * The IO port of this code:
+ * Publisher: pub_pose; to publish the object's coordinate
+ * Service client:  shezhang_cli; to call the localization server to start navigation-localization part
+                    navi_cli; to call and start the navigation part
+                    yuan_cli; to call the face recognition server after grasping the object
+ * Service server: mode1_srv; call this service to control the whole contol mode of my programm
+                              set req to 0 is waiting for the programm to start
+                              set req to 1 is starting searching and far approaching
+                              set req to 2 is starting near approaching
+                              set req to 3 is let NAO autonomously approach the object and grasp, then stand up
+ ************************************************************************************************************************************
+ * The constuction of my code: 
+ * 1) Firstly, after the speech recognition part, the service Mode_change is called and NAO starts searching. I use Yolo to detect the object.
+ * 
+ * 2) Secondly, if NAO finds the object, the moving & approaching part starts. The approaching function is seperated into 2 parts: far-approach and near-approach.
+ * The boundary of near and far is about 50cm. The detection and distance calculating algorithm is different in the 2 modes. 
+ * When in far-approach mode, I get the ROI from yolo. After that, I use a filter to get the red pixels of the cup. The distance of the cup is calculated based on
+ * the pixel height of the filtered image.
+ * When in near-approach mode, the distance is calculated based only on the pixel coordinate of the cup. I have made a fitting curve of the measured data of the 
+ * cup position and pixel coordinate from 3cm to 50cm. 
+ * 
+ * 3) Thirdly, when NAO reaches the pre-grasp position, the service grasping will be called to fulfill grasping motion.
+************************************************************************************************************************************
+Running commands:
+
+1. roslaunch detection darknet_ros_bottom.launch
+2. roslaunch speech yuan.launch
+3. roslaunch speech cong.launch
+4. rosrun detection detection
+*************************************************************************************************************************************
+Code integrating process:
+
+1. After speech recognition, my service /Mode_change is called by Chengjie Yuan's code to start my detection programm.
+This can also be done manually: 
+								rosservice call /Mode_change 'req = 1' 
+
+2. Then the programm will start searching the object. After the object is found, the navigation service from HelinCao & Yansong Wu is called by my code, to 
+start navigation part.
+
+3. Meanwhile, NAO will start detecting the object and publishing the coordinate of the object based on the NAO footprint frame.
+
+4. After the navigation, my service /Mode_change is called by Yansong Wu's code, to start approaching and grasping the object.
+This can also be done manually: 
+								rosservice call /Mode_change 'req = 3' 
+
+5. After the grasping, NAO will stand up and finish my part. The service 'facerecognition' is called in the end to start face recognition in Chengjie Yuan's code. 
+
+
+
+

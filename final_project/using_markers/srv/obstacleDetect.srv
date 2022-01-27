@@ -1,0 +1,13 @@
+float64 naox
+float64 naoy
+float64 naotheta
+float64 obx1
+float64 oby1
+float64 obx2
+float64 oby2
+float64 obx3
+float64 oby3
+
+-----------
+int8 ret
+
